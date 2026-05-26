@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>OBSCURA — Streetwear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #ececec;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.25;
+      mix-blend-mode: overlay;
+    }
+
+
+    :root {
+      --black: #050505;
+      --blood: #b10c0c;
+      --blood-glow: #d12c2c;
+      --off-white: #e8e4df;
+      --gray-dark: #1c1c1c;
+      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    h1, h2, h3, .manifesto-text, .hero-title, .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 12vw, 8rem);
+      line-height: 0.9;
+      color: var(--off-white);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 8vw, 4rem);
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--blood);
+      padding-left: 1rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    section {
+      position: relative;
+      padding: 6rem 0;
+      border-bottom: 1px solid rgba(177, 12, 12, 0.2);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 99;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.5);
+      transition: var(--transition-smooth);
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      color: var(--off-white);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--off-white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--blood);
+    }
+    .lang-switch {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 1px solid rgba(255,255,255,0.2);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: #bbb;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 1px;
+      transition: 0.2s;
+    }
+    .lang-btn.active {
+      color: var(--blood);
+      text-shadow: 0 0 2px rgba(177,12,12,0.3);
+    }
+    .lang-btn:hover {
+      color: var(--off-white);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at 30% 10%, #141414, #010101);
+      border-bottom: none;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://picsum.photos/id/15/2000/1200');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.35;
+      filter: grayscale(0.6) contrast(1.2);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      letter-spacing: 3px;
+      margin-top: 1.2rem;
+      color: var(--blood);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      border: 1.5px solid var(--blood);
+      color: var(--off-white);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.8rem;
+      transition: 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: var(--blood);
+      border-color: var(--blood);
+      color: #fff;
+      transform: scale(1.02);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .product-card {
+      background: #111111;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+    .product-img {
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .product-img img {
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: grayscale(100%);
+      aspect-ratio: 1 / 1.2;
+      object-fit: cover;
+    }
+    .product-card:hover .product-img img {
+      transform: scale(1.03);
+      filter: grayscale(0%);
+    }
+    .product-info {
+      padding: 1.2rem 0.5rem;
+      text-align: left;
+    }
+    .product-title {
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+    .product-price {
+      color: var(--blood);
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+
+    .manifesto-block {
+      background: #080808;
+      padding: 4rem;
+      border-left: 4px solid var(--blood);
+      margin: 2rem 0;
+    }
+    .manifesto-block h2 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .manifesto-block p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      color: #bcb7b0;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .editorial-item {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .editorial-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.6s ease;
+      filter: grayscale(0.7) brightness(0.8);
+      min-height: 380px;
+    }
+    .editorial-item:hover img {
+      transform: scale(1.02);
+      filter: grayscale(0%) brightness(0.9);
+    }
+    .editorial-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.7);
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--blood);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .detail-card {
+      background: #121212;
+      padding: 1.2rem;
+      text-align: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .detail-card h4 {
+      margin: 1rem 0 0.5rem;
+      text-transform: uppercase;
+    }
+    .detail-card p {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .community-img {
+      aspect-ratio: 1 / 1;
+      background: #1e1e1e;
+      overflow: hidden;
+    }
+    .community-img img {
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.8);
+      transition: 0.3s;
+    }
+    .community-img:hover img {
+      filter: grayscale(0);
+    }
+
+    .final-cta {
+      text-align: center;
+      background: #030303;
+      padding: 5rem 2rem;
+      border-bottom: none;
+    }
+    .final-cta h2 {
+      font-size: clamp(2.5rem, 10vw, 5.5rem);
+      color: var(--off-white);
+    }
+    footer {
+      padding: 3rem 5%;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a5a5a;
+      letter-spacing: 1px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-title, .hero-sub, .btn-primary {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUpStagger 0.9s forwards;
+    }
+    .hero-title { animation-delay: 0.1s; }
+    .hero-sub { animation-delay: 0.3s; }
+    .btn-primary { animation-delay: 0.6s; }
+
+    @keyframes fadeUpStagger {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .editorial-grid, .details-grid { grid-template-columns: 1fr; }
+      .community-grid { grid-template-columns: repeat(2, 1fr); }
+      .navbar { padding: 1rem 5%; }
+      .nav-links { gap: 1rem; }
+      .manifesto-block { padding: 2rem; }
+    }
+    @media (max-width: 550px) {
+      .community-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .glow-cursor {
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(177,12,12,0.08) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s linear;
+    }
+  </style>
+</head>
+<body>
+<div class="glow-cursor" id="cursorGlow"></div>
+
+<nav class="navbar">
+  <a href="#" class="logo" data-lang-key="brand">OBSCURA</a>
+  <div class="nav-links">
+    <a href="#featured" data-lang-key="nav_collection">COLLECTION</a>
+    <a href="#manifesto" data-lang-key="nav_manifesto">MANIFESTO</a>
+    <a href="#community" data-lang-key="nav_community">COMMUNITY</a>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="tr">TR</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-content">
+      <h1 class="hero-title" data-lang-key="hero_title">NOT FOR EVERYONE.</h1>
+      <div class="hero-sub" data-lang-key="hero_sub">BUILT FOR THE OUTSIDERS — DEFIANT BY DESIGN</div>
+      <a href="#featured" class="btn-primary" data-lang-key="hero_btn">▼ DISRUPT THE COLLECTION</a>
+    </div>
+  </section>
+
+  <section id="featured" class="container reveal">
+    <h2 class="section-title" data-lang-key="featured_title">// FEATURED ARCHIVE</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/5048cfaa-292c-4e28-a08f-e93ff87931dd/1512/12.webp" alt="hoodie"></div>
+        <div class="product-info">
+          <div class="product-title" data-lang-key="product1_title">HOODIE</div>
+          <div class="product-price">$???</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/786677ed-2628-4c32-b110-57e2281c58df/900/pleo.webp" alt="cargo"></div>
+        <div class="product-info">
+          <div class="product-title" data-lang-key="product2_title">CARDIGAN</div>
+          <div class="product-price">$???</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/4f9580cd-2410-48e6-888e-8dbe5b1e3b53/900/29.webp" alt="tshirt"></div>
+        <div class="product-info">
+          <div class="product-title" data-lang-key="product3_title">SWEATSHIRT</div>
+          <div class="product-price">$???</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="manifesto" class="container reveal">
+    <div class="manifesto-block">
+      <h2 data-lang-key="manifesto_title">MORE THAN FABRIC.</h2>
+      <p data-lang-key="manifesto_text">We engineer garments for the rebels, the outsiders, the ones who move differently. No logos. No noise. Just attitude. Each stitch carries resistance — because conformity is the true uniform of the weak. OBSCURA exists for the ones who refuse to blend.</p>
+      <p style="margin-top: 1rem; font-weight: 300; color: #b10c0c;" data-lang-key="manifesto_tagline">NOT FAST FASHION. ETERNAL REBELLION.</p>
+    </div>
+  </section>
+
+  <section class="container reveal">
+    <h2 class="section-title" data-lang-key="campaign_title">// CAMPAIGN // FRAGMENTS OF DEFIANCE</h2>
+    <div class="editorial-grid">
+      <div class="editorial-item">
+        <img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/01872f20-749e-4226-9305-1cae30b3d412/900/void-routeone36184.webp" alt="editorial">
+        <div class="editorial-caption" data-lang-key="caption1">CUTTING SILENCE</div>
+      </div>
+      <div class="editorial-item">
+        <img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/cf82c7ba-e28c-4862-ab1e-157662b41dfc/900/2.webp" alt="dark portrait">
+        <div class="editorial-caption" data-lang-key="caption2">BORN IN SHADOWS</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal">
+    <h2 class="section-title" data-lang-key="details_title">// ANATOMY OF OPPOSITION</h2>
+    <div class="details-grid">
+      <div class="detail-card"><div style="font-size: 2rem;">⚔️</div><h4 data-lang-key="det1_title">JAPANESE SELVEDGE</h4><p data-lang-key="det1_text">14oz raw denim, untreated for authentic fade.</p></div>
+      <div class="detail-card"><div style="font-size: 2rem;">🩸</div><h4 data-lang-key="det2_title">REINFORCED STITCHING</h4><p data-lang-key="det2_text">Triple-stitched seams. Built to endure chaos.</p></div>
+      <div class="detail-card"><div style="font-size: 2rem;">⛓️</div><h4 data-lang-key="det3_title">OBSIDIAN HARDWARE</h4><p data-lang-key="det3_text">Matte black coated zippers & rivets.</p></div>
+    </div>
+  </section>
+
+  <section id="community" class="container reveal">
+    <h2 class="section-title" data-lang-key="community_title">// WORN BY OUTSIDERS</h2>
+    <div class="community-grid">
+      <div class="community-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/6b66980d-5b92-4668-b8cb-147559ea2fd0/900/10.webp" alt="community1"></div>
+      <div class="community-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/424756f2-9f0c-4239-9226-e78e2b3b0592/900/3-2.webp" alt="community2"></div>
+      <div class="community-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/f4bcb10b-b6ce-4b57-b00e-70febcf983b3/900/10.webp" alt="community3"></div>
+      <div class="community-img"><img src="https://cdn.myikas.com/images/47c96b96-e7c0-4e88-bb4e-114530182c4e/23136ad4-e465-4260-961e-4bcffa7214de/900/img-1910.webp" alt="community4"></div>
+    </div>
+    <p style="margin-top: 1.5rem; text-align: center; font-style: italic; color:#aaa;" data-lang-key="community_quote">“They told us to fit in. We built a new grid.”</p>
+  </section>
+
+  <section class="final-cta reveal">
+    <h2 data-lang-key="cta_title">READY TO MOVE<br>DIFFERENT?</h2>
+    <a href="#" class="btn-primary" data-lang-key="cta_btn">⟁ ENTER THE VOID ⟁</a>
+  </section>
+
+  <footer>
+    <p data-lang-key="footer_text">OBSCURA — NO PERMISSION. NO APOLOGY. | NexBoom Studios // High-performance Armor</p>
+    <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+      <a href="#" style="color:#aaa; text-decoration:none;">IG</a>
+      <a href="#" style="color:#aaa; text-decoration:none;">X</a>
+      <a href="#" style="color:#aaa; text-decoration:none;">DISCORD</a>
+    </div>
+  </footer>
+</main>
+
+<script>
+  (function() {
+    const translations = {
+      en: {
+        brand: "OBSCURA",
+        nav_collection: "COLLECTION",
+        nav_manifesto: "MANIFESTO",
+        nav_community: "COMMUNITY",
+        hero_title: "NOT FOR EVERYONE.",
+        hero_sub: "BUILT FOR THE OUTSIDERS — DEFIANT BY DESIGN",
+        hero_btn: "▼ DISRUPT THE COLLECTION",
+        featured_title: "// FEATURED ARCHIVE",
+        product1_title: "HOODIE",
+        product2_title: "CARDIGAN",
+        product3_title: "SWEATSHIRT",
+        manifesto_title: "MORE THAN FABRIC.",
+        manifesto_text: "We engineer garments for the rebels, the outsiders, the ones who move differently. No logos. No noise. Just attitude. Each stitch carries resistance — because conformity is the true uniform of the weak. OBSCURA exists for the ones who refuse to blend.",
+        manifesto_tagline: "NOT FAST FASHION. ETERNAL REBELLION.",
+        campaign_title: "// CAMPAIGN // FRAGMENTS OF DEFIANCE",
+        caption1: "CUTTING SILENCE",
+        caption2: "BORN IN SHADOWS",
+        details_title: "// ANATOMY OF OPPOSITION",
+        det1_title: "JAPANESE SELVEDGE",
+        det1_text: "14oz raw denim, untreated for authentic fade.",
+        det2_title: "REINFORCED STITCHING",
+        det2_text: "Triple-stitched seams. Built to endure chaos.",
+        det3_title: "OBSIDIAN HARDWARE",
+        det3_text: "Matte black coated zippers & rivets.",
+        community_title: "// WORN BY OUTSIDERS",
+        community_quote: "“They told us to fit in. We built a new grid.”",
+        cta_title: "READY TO MOVE<br>DIFFERENT?",
+        cta_btn: "⟁ ENTER THE VOID ⟁",
+        footer_text: "OBSCURA — NO PERMISSION. NO APOLOGY. | NexBoom Studios // High-performance Armor"
+      },
+      tr: {
+        brand: "OBSCURA",
+        nav_collection: "KOLEKSİYON",
+        nav_manifesto: "MANİFESTO",
+        nav_community: "TOPLULUK",
+        hero_title: "HERKESE GÖRE DEĞİL.",
+        hero_sub: "DIŞARDAKİLER İÇİN ÜRETİLDİ — ASİ DURUŞ",
+        hero_btn: "▼ KOLEKSİYONU BOZ",
+        featured_title: "// ÖNE ÇIKAN ARŞİV",
+        product1_title: "HOODİE",
+        product2_title: "HIRKA",
+        product3_title: "SWEATSHİRT",
+        manifesto_title: "KUMAŞTAN DAHA FAZLASI.",
+        manifesto_text: "Kıyafetleri asi ruhlar, dışarıdakiler ve farklı hareket edenler için tasarlıyoruz. Logo yok, gürültü yok. Sadece tavır. Her dikiş direniş taşır — çünkü uyum, zayıfların gerçek üniformasıdır. OBSCURA, kitleye karışmayı reddedenler için var.",
+        manifesto_tagline: "HIZLI MODA DEĞİL. EZELİ İSYAN.",
+        campaign_title: "// KAMPANYA // BAŞKALDIRI PARÇALARI",
+        caption1: "SESSİZLİĞİ KESMEK",
+        caption2: "GÖLGELERDE DOĞAN",
+        details_title: "// KARŞI KOYMANIN ANATOMİSİ",
+        det1_title: "JAPON SELVEDJ",
+        det1_text: "14oz ham denim, otantik solma için işlenmemiş.",
+        det2_title: "GÜÇLENDİRİLMİŞ DİKİŞ",
+        det2_text: "Üçlü dikiş. Kaos'a dayanıklı.",
+        det3_title: "OBSİDİYEN DONANIM",
+        det3_text: "Mat siyah kaplamalı fermuarlar ve perçinler.",
+        community_title: "// DIŞARDAKİLER TARAFINDAN GİYİLİR",
+        community_quote: "“Bize uyum sağlamamızı söylediler. Biz yeni bir düzen kurduk.”",
+        cta_title: "FARKLI HAREKET<br>ETMEYE HAZIR MISIN?",
+        cta_btn: "⟁ BOŞLUĞA ADIM AT ⟁",
+        footer_text: "OBSCURA — İZİN YOK, ÖZÜR YOK. | NexBoom Studios // Yüksek performanslı zırh"
+      }
+    };
+
+    let currentLang = localStorage.getItem('obscura_lang') || 'en';
+    
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      localStorage.setItem('obscura_lang', lang);
+      
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key] !== undefined) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.value = translations[lang][key];
+          } else if (el.tagName === 'H2' && key === 'cta_title') {
+            el.innerHTML = translations[lang][key];
+          } else {
+            el.innerText = translations[lang][key];
+          }
+        }
+      });
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = btn.getAttribute('data-lang');
+        setLanguage(lang);
+      });
+    });
+    
+    setLanguage(currentLang);
+    
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    revealElements.forEach(el => observer.observe(el));
+    
+    const cursorGlow = document.getElementById('cursorGlow');
+    if (cursorGlow) {
+      document.addEventListener('mousemove', (e) => {
+        requestAnimationFrame(() => {
+          cursorGlow.style.left = e.clientX + 'px';
+          cursorGlow.style.top = e.clientY + 'px';
+        });
+      });
+    }
+    
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(5,5,5,0.85)';
+        navbar.style.backdropFilter = 'blur(12px)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.5)';
+        navbar.style.backdropFilter = 'blur(8px)';
+      }
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#") return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
